@@ -1,6 +1,6 @@
 #!/bin/bash
-if [[ $PWD =~ /home/* ]]; then
-  echo /home/*
+if [[ $PWD =~ $HOME/* ]]; then
+  echo $HOME/*
   exit 0
 else
   echo "Error Message"
