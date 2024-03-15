@@ -5,7 +5,7 @@ prev_pid=0
 avgsum=0
 avg=0
 
-cat 4.txt | sed "s/[^0-9.]\+/ /g" |
+echo -e "$(<4.txt)\n" | sed "s/[^0-9.]\+/ /g" |
 while read str; do
 	pid=$(echo "$str" | awk '{print $1}')
         ppid=$(echo "$str" | awk '{print $2}')
