@@ -6,4 +6,4 @@
 5. [Управление памятью в ОС Linux](https://github.com/mibrgmv/operating-systems/tree/main/Lab5)
 6. [Консольный интерфейс ОС WINDOWS](https://github.com/mibrgmv/operating-systems/tree/main/Lab6)
 ### Администрирование в ОС Linux (y3s2)
-1. [Управление пользователями, группами пользователей и правами на файлы и каталоги в Linux](https://github.com/mibrgmv/operating-systems/linux/lab1)
+1. [Управление пользователями, группами пользователей и правами на файлы и каталоги в Linux](linux/lab1)
