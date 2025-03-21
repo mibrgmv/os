@@ -36,6 +36,7 @@ chmod 1777 /home/test14
 
 cp /bin/nano /home/test14
 chmod 755 /home/test14/nano
+chmod u+s /home/test14/nano
 
 mkdir -p /home/test15
 echo "secret content" > /home/test15/secret
