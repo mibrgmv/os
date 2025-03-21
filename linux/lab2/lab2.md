@@ -98,7 +98,7 @@ sudo pvdisplay
 sudo vgdisplay
 sudo lvdisplay
 ```
-16. Расширение раздела на новый диск
+17. Расширение раздела на новый диск
 ```sh
 sudo fdisk /dev/sdd
 # n p 1 'enter' 'enter' t 8e w
@@ -107,13 +107,35 @@ sudo pvcreate /dev/sde1
 sudo vgextend vg01 /dev/sde1
 sudo lvextend -l +100%FREE /dev/vg01/lvol01
 ```
-17. Расширение фс на новый диск
+18. Расширение фс на новый диск
 ```sh
 sudo resize2fs /dev/vg01/lvol01
 ```
-18. Получение обновленной информации
+19. Получение обновленной информации
 ```sh
 sudo pvdisplay
 sudo vgdisplay
 sudo lvdisplay
+```
+# server
+20. NFS сервер
+```sh
+sudo apt install nfs-kernel-server
+sudo systemctl enable nfs-server
+sudo systemctl start nfs-server
+sudo systemctl status nfs-server
+```
+21. Настройка экспорта
+```sh
+NETWORK=$(ip route | grep -v default | grep -v 'linkdown' | awk '{print $1}' | grep '/')
+echo "/mnt/vol01 ${NETWORK}(rw,sync,no_subtree_check)" | sudo tee -a /etc/exports
+sudo exportfs -ra
+sudo exportfs -v
+```
+# client
+22. 
+```sh
+sudo apt update
+sudo apt install nfs-common
+sudo mkdir -p /var/remotenfs
 ```
