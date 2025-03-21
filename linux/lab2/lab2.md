@@ -79,17 +79,41 @@ sudo pvcreate /dev/sdb1 /dev/sdc1
 ```sh
 # Создаем группу томов
 sudo vgcreate vg01 /dev/sdb1 /dev/sdc1
-
 # Создаем логический том, используя все доступное пространство
 sudo lvcreate -l 100%FREE -n lvol01 vg01 -i 2
-
 # Создаем файловую систему ext4
 sudo mkfs.ext4 /dev/vg01/lvol01
-
+```
+15. Автомонтирование
+```sh
 # Создаем точку монтирования и монтируем том
 sudo mkdir -p /mnt/vol01
 sudo mount /dev/vg01/lvol01 /mnt/vol01
-
 # Автомонтирование
 echo "/dev/vg01/lvol01 /mnt/vol01 ext4 defaults 0 2" | sudo tee -a /etc/fstab
+```
+16. Получение информации о дисках, группах и томах
+```sh
+sudo pvdisplay
+sudo vgdisplay
+sudo lvdisplay
+```
+16. Расширение раздела на новый диск
+```sh
+sudo fdisk /dev/sdd
+# n p 1 'enter' 'enter' t 8e w
+
+sudo pvcreate /dev/sde1
+sudo vgextend vg01 /dev/sde1
+sudo lvextend -l +100%FREE /dev/vg01/lvol01
+```
+17. Расширение фс на новый диск
+```sh
+sudo resize2fs /dev/vg01/lvol01
+```
+18. Получение обновленной информации
+```sh
+sudo pvdisplay
+sudo vgdisplay
+sudo lvdisplay
 ```
