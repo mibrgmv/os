@@ -25,4 +25,35 @@ apt-cache search "clone with a bastard algorithm"
 mkdir -p ~/bastet-source
 cd ~/bastet-source
 apt-get source bastet
+# не было dpkg-dev
+sudo apt install dpkg-dev
+sudo apt build-dep bastet
+```
+7. _
+```sh
+nano Makefile
+# редачим makefile
+clean make
+make
+```
+8. 123
+```sh
+make install
+ls -la /usr/local/bin/bastet
+```
+9. 000
+```sh
+
+```
+10. Все пакеты
+```sh
+dpkg --list > task10.log
+```
+11. Зависимости gcc
+```sh
+apt-cache depends gcc > task11.log
+```
+12. 0
+```sh
+
 ```
