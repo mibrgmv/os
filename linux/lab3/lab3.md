@@ -53,7 +53,45 @@ dpkg --list > task10.log
 ```sh
 apt-cache depends gcc > task11.log
 ```
-12. 0
+12. Пакеты которые требуют libgpm2
+```sh
+apt-cache rdepends libgpm2 > task12.log
+```
+13. 1
+```sh
+mkdir -p localrepo
+cd localrepo
+dpkg-scanpackages --multiversion . /dev/null > Packages
+echo "deb [trusted=yes] file:/root/localrepo ./" | sudo tee /etc/apt/sources.list.d/localrepo.list
+
+sudo wget http://snapshot.debian.org/archive/debian/20220717T032247Z/pool/main/h/htop/htop_3.2.1-1_amd64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20210731T155743Z/pool/main/h/htop/htop_3.0.5-7_amd64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20201031T033955Z/pool/main/h/htop/htop_3.0.2-1_amd64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20200721T042305Z/pool/main/h/htop/htop_3.0.1-1_amd64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20190908T034248Z/pool/main/h/htop/htop_2.2.0-1+b1_amd64.deb
+```
+14. Release
 ```sh
 
 ```
+15. Обновление кэша apt
+```sh
+sudo apt update
+```
+16. Список реп
+```sh
+
+```
+17. Вывод информации о пакетах
+```sh
+apt-cache policy htop > /root/task16.log
+```
+18. -
+```sh
+
+```
+19. nano
+```sh
+
+```
+
