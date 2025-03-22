@@ -105,7 +105,7 @@ sudo fdisk /dev/sdd
 
 sudo pvcreate /dev/sde1
 sudo vgextend vg01 /dev/sde1
-sudo lvextend -l +100%FREE /dev/vg01/lvol01
+sudo lvextend -l +100%FREE -i1 /dev/vg01/lvol01
 ```
 18. Расширение фс на новый диск
 ```sh
