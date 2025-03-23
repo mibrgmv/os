@@ -2,6 +2,7 @@
 ```sh
 sudo fdisk -l
 sudo fdisk /dev/sda
+# n p 1 'enter' '+500M' w
 ```
 2. Вывод uuid в файл
 ```sh
@@ -58,6 +59,7 @@ sudo e2fsck -n /dev/sda1
 12. Содание нового раздела 12 Мбайт и перенос журнала 
 ```sh
 sudo fdisk /dev/sda
+# n p 2 '+12M' w
 
 sudo umount /mnt/newdisk
 sudo tune2fs -O ^has_journal /dev/sda1
@@ -116,26 +118,4 @@ sudo resize2fs /dev/vg01/lvol01
 sudo pvdisplay
 sudo vgdisplay
 sudo lvdisplay
-```
-# server
-20. NFS сервер
-```sh
-sudo apt install nfs-kernel-server
-sudo systemctl enable nfs-server
-sudo systemctl start nfs-server
-sudo systemctl status nfs-server
-```
-21. Настройка экспорта
-```sh
-NETWORK=$(ip route | grep -v default | grep -v 'linkdown' | awk '{print $1}' | grep '/')
-echo "/mnt/vol01 ${NETWORK}(rw,sync,no_subtree_check)" | sudo tee -a /etc/exports
-sudo exportfs -ra
-sudo exportfs -v
-```
-# client
-22. 
-```sh
-sudo apt update
-sudo apt install nfs-common
-sudo mkdir -p /var/remotenfs
 ```
