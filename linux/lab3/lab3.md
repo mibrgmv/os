@@ -57,26 +57,34 @@ apt-cache depends gcc > task11.log
 ```sh
 apt-cache rdepends libgpm2 > task12.log
 ```
-13. 1
+13. Создание localrepo и установка пакетов
 ```sh
-mkdir -p localrepo
-cd localrepo
+mkdir /home/localrepo
+cd /home/localrepo
 dpkg-scanpackages --multiversion . /dev/null > Packages
-echo "deb [trusted=yes] file:/root/localrepo ./" | sudo tee /etc/apt/sources.list.d/localrepo.list
+echo "deb [trusted=yes] file:/home/localrepo ./" | sudo tee /etc/apt/sources.list.d/localrepo.list
 
-sudo wget http://snapshot.debian.org/archive/debian/20220717T032247Z/pool/main/h/htop/htop_3.2.1-1_amd64.deb
-sudo wget http://snapshot.debian.org/archive/debian/20210731T155743Z/pool/main/h/htop/htop_3.0.5-7_amd64.deb
-sudo wget http://snapshot.debian.org/archive/debian/20201031T033955Z/pool/main/h/htop/htop_3.0.2-1_amd64.deb
-sudo wget http://snapshot.debian.org/archive/debian/20200721T042305Z/pool/main/h/htop/htop_3.0.1-1_amd64.deb
-sudo wget http://snapshot.debian.org/archive/debian/20190908T034248Z/pool/main/h/htop/htop_2.2.0-1+b1_amd64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20220717T032247Z/pool/main/h/htop/htop_3.2.1-1_arm64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20210731T155743Z/pool/main/h/htop/htop_3.0.5-7_arm64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20201031T033955Z/pool/main/h/htop/htop_3.0.2-1_arm64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20200721T042305Z/pool/main/h/htop/htop_3.0.1-1_arm64.deb
+sudo wget http://snapshot.debian.org/archive/debian/20190908T034248Z/pool/main/h/htop/htop_2.2.0-1+b1_arm64.deb
 ```
 14. Release
 ```sh
-
+nano Release
+# Origin: My Local Repo
+# Label: My Local Repo
+# Suite: stable
+# Version: 1.0
+# Codename: myrepo
+# Architectures: amd64
+# Components: main
+# Description: My local APT repository
 ```
 15. Обновление кэша apt
 ```sh
-sudo apt update
+apt update
 ```
 16. Список реп
 ```sh
@@ -84,14 +92,29 @@ sudo apt update
 ```
 17. Вывод информации о пакетах
 ```sh
-apt-cache policy htop > /root/task16.log
+apt-cache madison htop > task16.log
 ```
-18. -
+18. Установка предпоследней версии
 ```sh
 
 ```
-19. nano
+19. newnano
 ```sh
+# распаковываем пакет в отдельной директории
+apt download nano
+mkdir nano-mod
+cd nano-mod
+dpkg-deb -R ../nano-*.deb .
 
+# создаем ссылку
+mkdir -p ./usr/local/bin
+ln -s /usr/bin/nano usr/local/bin/newnano
+
+cd ..
+dpkg-deb -b nano-mod nano-mod.deb
+dpkg -i nano-mod.deb
+
+# проверка
+newnano --version
 ```
 
