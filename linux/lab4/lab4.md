@@ -69,21 +69,21 @@ sudo systemctl enable mymsg.service
 sudo systemctl start mymsg.service
 ```
 ## Часть 4
-1.
+1. Системный журнал
 ```sh
-
+journalctl
 ```
-2.
+2. Сообщения о mymsg 
 ```sh
-
+journalctl -u mymsg.service
 ```
-3.
+3. Сообщения об ошибках
 ```sh
-
+journalctl -p err
 ```
-4.
+4. Размер журнала
 ```sh
-
+journalctl --disk-usage
 ```
 ## Часть 5
 1.
