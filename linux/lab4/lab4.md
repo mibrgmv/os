@@ -15,6 +15,7 @@ systemctl list-dependencies sshd --reverse
 4. Изображение с графиком загрузки системы
 ```sh
 systemd-analyze plot > boot-graph.svg
+firefox boot-graph.svg
 ```
 ## Часть 2
 1. Вывод всех запущенных юнитов сервисов 
