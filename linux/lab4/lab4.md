@@ -50,13 +50,12 @@ sudo nano /etc/systemd/system/mymsg.service
 ```text
 [Unit]
 Description=My custom message service
-After=network.service
-Requires=network.service
+After=network.target
+Requires=network.target
 
 [Service]
 Type=oneshot
 ExecStart=/bin/sh -c 'logger "mymsg service started at $(date)"'
-RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
