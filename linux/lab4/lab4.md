@@ -124,11 +124,37 @@ df -h /mnt/mydata
 ```sh
 
 ```
-2.
+2. Создание .automount юнита
 ```sh
+sudo nano /etc/systemd/system/mnt-mydata.automount
+```
+```text
+[Unit]
+Description=Automount for /mnt/mydata
 
+[Automount]
+Where=/mnt/mydata
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target
 ```
 3.
 ```sh
+sudo systemctl daemon-reload
+sudo systemctl disable mnt-mydata.mount
+sudo systemctl stop mnt-mydata.mount
+sudo systemctl enable mnt-mydata.automount
+sudo systemctl start mnt-mydata.automount
 
+sudo systemctl status mnt-mydata.automount
+
+mount | grep mydata
+# Обратимся к точке монтирования
+ls -la /mnt/mydata
+# Проверим, что раздел автоматически смонтирован
+mount | grep mydata
+# Подождем более 5 минут (300 секунд) и проверим, что раздел размонтирован
+sleep 310
+mount | grep mydata
 ```
