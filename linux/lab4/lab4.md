@@ -87,17 +87,37 @@ journalctl -p err
 journalctl --disk-usage
 ```
 ## Часть 5
-1.
+1. Создание файла образа вместо раздела
 ```sh
-
+dd if=/dev/zero of=/mydisk.img bs=1M count=1024
+/sbin/mkfs.ext4 /mydisk.img
+mkdir -p /mnt/mydata
 ```
-2.
+2. Создание юнита
 ```sh
-
+nano /etc/systemd/system/mnt-mydata.mount
 ```
-3.
-```sh
+```text
+[Unit]
+Description=Mount mydata loop device
 
+[Mount]
+What=/mydisk.img
+Where=/mnt/mydata
+Type=ext4
+Options=loop,defaults
+
+[Install]
+WantedBy=multi-user.target
+```
+3. Проверка
+```sh
+systemctl daemon-reload
+systemctl enable mnt-mydata.mount
+systemctl start mnt-mydata.mount
+systemctl status mnt-mydata.mount
+
+df -h /mnt/mydata
 ```
 ## Часть 6
 1.
