@@ -149,12 +149,8 @@ sudo systemctl start mnt-mydata.automount
 
 sudo systemctl status mnt-mydata.automount
 
-mount | grep mydata
-# Обратимся к точке монтирования
-ls -la /mnt/mydata
-# Проверим, что раздел автоматически смонтирован
-mount | grep mydata
-# Подождем более 5 минут (300 секунд) и проверим, что раздел размонтирован
-sleep 310
+# обращение к точке монтирования
+ls /mnt/mydata
+# проверка монтирования 
 mount | grep mydata
 ```
