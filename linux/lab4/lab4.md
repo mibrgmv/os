@@ -139,7 +139,7 @@ TimeoutIdleSec=10
 [Install]
 WantedBy=multi-user.target
 ```
-3.
+3. Проверка
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl disable mnt-mydata.mount
