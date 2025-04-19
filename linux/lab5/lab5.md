@@ -10,7 +10,7 @@ sudo cgexec -g cpuset:cpu_group top
 
 ```
 
-проверка пункта 5
+5. -
 ```shell
 chmod +x cpu_quota_manager.sh
 
