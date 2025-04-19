@@ -13,9 +13,9 @@ docker ps -a
 docker logs appname
 ```
 Файлы:
-- [Dockerfile](./Dockerfile)
-- [requirements.txt](./requirements.txt)
-- [.dockerignore](./.dockerignore)
+- [Dockerfile](Dockerfile)
+- [requirements.txt](requirements.txt)
+- [.dockerignore](.dockerignore)
 
 12. Подъём `Wordpress` в `docker-compose`
 
