@@ -17,7 +17,9 @@ docker logs appname
 - [requirements.txt](./requirements.txt)
 - [.dockerignore](./.dockerignore)
 
-12. Подъём `Wordpress` в `docker-compose` 
+12. Подъём `Wordpress` в `docker-compose`
+
+[docker-compose](docker-compose.yaml)
 ```shell
 docker-compose up -d
 ```
