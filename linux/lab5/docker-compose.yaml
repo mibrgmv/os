@@ -1,5 +1,6 @@
 services:
   wordpress:
+    container_name: wordpress
     image: wordpress:latest
     ports:
       - "2079:80"
@@ -14,6 +15,7 @@ services:
       - mysql
 
   mysql:
+    container_name: mysql
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: myname_db_pass
