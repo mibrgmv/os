@@ -14,3 +14,14 @@ docker ps -a
 - [.dockerignore](./.dockerignore)
 
 12. Подъём `Wordpress` в `docker-compose` 
+```shell
+docker-compose up -d
+```
+
+Проверка
+```shell
+curl -I http://localhost:2079
+docker ps -a
+docker logs mysql
+docker logs wordpress
+```
